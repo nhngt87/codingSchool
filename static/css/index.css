@@ -1,0 +1,16 @@
+/* Show it is fixed to the top */
+body {
+  padding-top: 4.5rem;
+}
+
+/* STYLING FOR ADD BUTTON */
+.btn-add-todo {
+  margin-top: 10px;
+}
+
+/* STYLING FOR COMPELTED CHECK BOX */
+.list-check {
+  position: relative;
+  top: 5px;
+  color: green;
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "task": "Get Milk",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "task": "Take out the trash",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "task": "WALK THE DOG",
+    "completed": true,
+    "completedOn": "9/19/2017"
+  }
+]
