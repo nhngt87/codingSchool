@@ -1,3 +1,10 @@
 <h3>Incomplete Tasks</h3>
 
 {{!-- TODO: SHOW THE CURRENT LIST OF TODOS AND GIVE THE USER THE ABILITY TO CLOSE OUT A TASK --}}
+<ul>
+    {{#each incompleteTodos}}
+        <li>
+            {{this.task}}
+        </li>
+    {{/each}}
+</ul>

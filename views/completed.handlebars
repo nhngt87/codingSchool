@@ -1,3 +1,11 @@
 <h3>Completed Tasks</h3>
 
 {{!-- TODO: SHOW A LIST OF THE COMPLETED TASKS AND THE DATE THEY WERE COMPLETED ON --}}
+
+<ul>
+    {{#each completeTodos}}
+        <li>
+            {{this.task}}
+        </li>
+    {{/each}}
+</ul>
