@@ -32,17 +32,12 @@ function addTodo(todo) {
 //TODO: FIND AND COMPLETE A TODO ) {
 //GET ALL TODOS BASED OFF OF THE ID
 function completedToDo(id) {
-    const completed = getIncompleteTodos();
-
-
-
-
-
-
-
-    //FIND TODO BY ID HINT: todoList.findIndex(todo => todo.id === id)
-    //MODIFY TODO BY SETTING COMPLETED = TRUE HINT: todoList(index).completed = false;
-    //SAVE LIST BACK TO DISK
+    const todos = getAllTodos();
+    const index = todos.findIndex(function(todo) {
+        return todo.id === id;
+    });
+    todos[index].completed = true;
+    fs.writeFileSync(dataFilePath, JSON.stringify(todos));
 }
 
 //TODO: EXPORT ALL METHODS FOR ACCESS THROUGHOUT THE APP

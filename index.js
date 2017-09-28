@@ -38,8 +38,8 @@ app.post('/todo', (request, response) => {
 //TODO: SETUP THE COMPLETING OF A TASK
 app.post('/completed', (request, response) => {
     const id = request.body.id;
-    const completedToDo = todoDb.completedTodo(Number(id));
-    response.render('completedToDo', {complete: true, completedToDo});
+    todoDb.completedToDo(Number(id));
+    response.redirect('/completed');
 });
 
 //TODO: SETUP ROUTE FOR ALL PAGES A USER COULD TYPE
