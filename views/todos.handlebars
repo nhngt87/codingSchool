@@ -5,6 +5,9 @@
     {{#each incompleteTodos}}
         <li>
             {{this.task}}
+            <form action="/completed" method="post">
+                <button name="id" value="{{this.id}}" type="submit">Done</button>
+            </form>
         </li>
     {{/each}}
 </ul>

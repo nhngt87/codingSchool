@@ -26,13 +26,20 @@ function addTodo(todo) {
         task: todo,
         id: new Date().getTime(),
     })
-
     fs.writeFileSync(dataFilePath, JSON.stringify(currentTodos));
 }
 
-//TODO: FIND AND COMPLETE A TODO BASED OFF OF THE ID
-function completeTodo(id) {
-    //GET ALL TODOS
+//TODO: FIND AND COMPLETE A TODO ) {
+//GET ALL TODOS BASED OFF OF THE ID
+function completedToDo(id) {
+    const completed = getIncompleteTodos();
+
+
+
+
+
+
+
     //FIND TODO BY ID HINT: todoList.findIndex(todo => todo.id === id)
     //MODIFY TODO BY SETTING COMPLETED = TRUE HINT: todoList(index).completed = false;
     //SAVE LIST BACK TO DISK
@@ -42,5 +49,6 @@ function completeTodo(id) {
 module.exports = {
     getIncompleteTodos,
     getCompletedTodos,
-    addTodo
+    addTodo,
+    completedToDo
 };
