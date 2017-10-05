@@ -2,12 +2,22 @@
 
 {{!-- TODO: SHOW THE CURRENT LIST OF TODOS AND GIVE THE USER THE ABILITY TO CLOSE OUT A TASK --}}
 <ul>
-    {{#each incompleteTodos}}
-        <li>
-            {{this.task}}
-            <form action="/completed" method="post">
-                <button name="id" value="{{this.id}}" type="submit">Done</button>
-            </form>
-        </li>
-    {{/each}}
+  {{#each incompleteTodos}}
+    <li>
+      {{this.task}}
+      <form action="/completed" method="post">
+        <button name="id" value="{{this.id}}" type="submit">Done</button>
+      </form>
+      <form action="/deleteToDo" method="post">
+        <input type="hidden" name="redirectURL" value="/">
+        <button name="id" value="{{this.id}}" type="submit">Delete</button>
+      </form>
+    </li>
+  {{/each}}
 </ul>
+
+<div>
+  <form action="/completed" method="post">
+    <button type="submit">Complete All</button>
+  </form>
+</div>

@@ -3,9 +3,24 @@
 {{!-- TODO: SHOW A LIST OF THE COMPLETED TASKS AND THE DATE THEY WERE COMPLETED ON --}}
 
 <ul>
-    {{#each completeTodos}}
-        <li>
-            {{this.task}}
-        </li>
-    {{/each}}
+  {{#each completeTodos}}
+    <li>
+      {{this.task}}
+      <form action="/" method="post">
+        <button name="id" value="{{this.id}}" type="submit">Not Done</button>
+      </form>
+      <form action="/deleteToDo" method="post">
+        <input type="hidden" name="redirectURL" value="/completed">
+        <button name="id" value="{{this.id}}" type="submit">Delete</button>
+      </form>
+    </li>
+  {{/each}}
 </ul>
+
+<div>
+  <form action="/" method="post">
+    <button type="submit">ToDo All</button>
+  </form>
+</div>
+
+
