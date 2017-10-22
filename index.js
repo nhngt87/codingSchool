@@ -16,48 +16,62 @@ app.use(bodyParser.urlencoded({extended: true})); //takes all data and turns int
 
 //TODO: SETUP ROUTE FOR INCOMPLETE TASKS
 app.get('/', (request, response) => {
-  const incompleteTodos = todoDb.getIncompleteTodos();
-  response.render('todos', {home: true, incompleteTodos}); //shorthand version of pageData below
-  //todos: render todos.handlebars
-
+  todoDb.getIncompleteTodos(result => {
+    response.render('todos', {incompleteTodos: result})
+  });
 });
 
 //TODO: SETUP ROUTE FOR COMPLETED TASKS
 app.get('/completed', (request, response) => {
-  const pageData = {
-    completed: true,
-    completeTodos: todoDb.getCompletedTodos()
-  };
-  response.render('completed', pageData);
+  todoDb.getCompletedTodos(result => {
+    response.render('completed', {completeTodos: result})
+  });
 });
 
 //TODO: SETUP POSTING OF A NEW TODO
 app.post('/todo', (request, response) => {
-  const { body } = request;
-  //const body = request.body;
-  todoDb.addTodo(body.newTodo);
-  response.redirect('/');
+  const {body} = request;
+  todoDb.addTodo(body.newTodo, () => {
+    response.redirect('/');
+  });
 });
 
 //TODO: SETUP THE COMPLETING OF A TASK
 app.post('/completed', (request, response) => {
-  const { id } = request.body;
-  todoDb.completedToDo(Number(id));
-  response.redirect('/completed');
+  const {id} = request.body;
+  todoDb.completedToDo(Number(id), () => {
+    response.redirect('/completed');
+  });
 });
 
 //TODO: MOVE TASK FROM COMPLETED TO INCOMPLETE
 app.post('/', (request, response) => {
-  const id = request.body.id;
-  todoDb.notCompleted(Number(id));
-  response.redirect('/');
+  const {id} = request.body;
+  todoDb.notCompleted(Number(id), () => {
+    response.redirect('/');
+  });
 });
 
 app.post('/deleteToDo', (request, response) => {
-  const { id, redirectURL } = request.body;
-  todoDb.deleteTodo(Number(id));
-  response.redirect(redirectURL);
+  const {id, redirectURL} = request.body;
+  todoDb.deleteTodo(Number(id), () => {
+    response.redirect(redirectURL);
+  });
 });
+
+app.post('/completeAll', (request, response) => {
+  todoDb.completeAll(() => {
+    response.redirect('/completed');
+  });
+});
+
+app.post('/incompleteAll', (request, response) => {
+  todoDb.incompleteAll(() => {
+    response.redirect('/');
+  });
+});
+
+
 
 
 //TODO: SETUP ROUTE FOR ALL PAGES A USER COULD TYPE
